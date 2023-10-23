@@ -34,30 +34,44 @@ function App() {
     setResult({ imc, classification });
   };
   return (
-    <div className="App">
-      <h1>Calculadora IMC</h1>
-      <div>
-        <label>Peso (kg):</label>
-        <input
-          type="number"
-          value={weight}
-          onChange={(e) => setWeight(e.target.value)}
-        />
+    <div className="container mt-5">
+      <h1 className="text-center">Calculadora IMC</h1>
+      <div className="row justify-content-center">
+        <div className="col-md-4">
+          <div className="form-group">
+            <label>Peso (kg):</label>
+            <input
+              type="number"
+              className="form-control"
+              value={weight}
+              onChange={(e) => setWeight(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label>Altura (cm):</label>
+            <input
+              type="number"
+              className="form-control"
+              value={height}
+              onChange={(e) => setHeight(e.target.value)}
+            />
+          </div><br></br>
+          <button className="btn btn-primary" onClick={calculateIMC}>
+            Calcular IMC
+          </button>
+        </div>
       </div>
-      <div>
-        <label>Altura (cm):</label>
-        <input
-          type="number"
-          value={height}
-          onChange={(e) => setHeight(e.target.value)}
-        />
-      </div>
-      <button onClick={calculateIMC}>Calcular IMC</button>
-      {result && result.error && <p style={{ color: "red" }}>{result.error}</p>}
+      {result && result.error && (
+        <p className="mt-3 text-danger">{result.error}</p>
+      )}
       {result && result.imc && (
-        <div>
-          <p>Tu IMC es: {result.imc}</p>
-          <p>Clasificación: {result.classification}</p>
+        <div className="mt-3">
+          <p>
+            <strong>Tu IMC es: {result.imc}</strong>
+          </p>
+          <p>
+            <strong>Clasificación: {result.classification}</strong>
+          </p>
         </div>
       )}
     </div>
